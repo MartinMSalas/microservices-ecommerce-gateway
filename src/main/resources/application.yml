@@ -1,0 +1,27 @@
+spring:
+  application:
+    name: gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: product-service
+              uri: lb://PRODUCT-SERVICE # Usa el nombre en Eureka
+              predicates:
+                - Path=/api/v1/products/**
+            - id: user-service
+              uri: lb://USER-SERVICE
+              predicates:
+                - Path=/api/v1/users/**
+            - id: order-service
+              uri: lb://ORDER-SERVICE
+              predicates:
+                - Path=/api/v1/orders/**,/api/v1/carts/** # Nota: las rutas múltiples van separadas por coma, no por espacio
+
+server:
+  port: 8080
+
+logging:
+  level:
+    root: info
