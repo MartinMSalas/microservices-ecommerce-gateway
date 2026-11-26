@@ -20,8 +20,10 @@ spring:
                 - Path=/api/v1/orders/**,/api/v1/carts/** # Nota: las rutas múltiples van separadas por coma, no por espacio
 
 server:
-  port: 80801
+  port: 8080
 
 logging:
   level:
     root: info
+    org.springframework.cloud.gateway.route.RouteDefinitionLocator: INFO
+    org.springframework.cloud.gateway: TRACE
